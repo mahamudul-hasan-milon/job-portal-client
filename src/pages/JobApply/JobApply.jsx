@@ -24,13 +24,16 @@ const JobApply = () => {
       github,
       resume,
     };
-    fetch("http://localhost:3000/job-applications", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(jobApplication),
-    })
+    fetch(
+      "https://job-portal-server-for-recruiter-mu.vercel.app/job-applications",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(jobApplication),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {

@@ -47,7 +47,11 @@ const AuthProvider = ({ children }) => {
         const user = { emali: currentUser.email };
 
         axios
-          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .post(
+            "https://job-portal-server-for-recruiter-mu.vercel.app/jwt",
+            user,
+            { withCredentials: true }
+          )
           .then((res) => {
             console.log("Login token", res.data);
             setLoading(false);
@@ -55,7 +59,7 @@ const AuthProvider = ({ children }) => {
       } else {
         axios
           .post(
-            "http://localhost:3000/logout",
+            "https://job-portal-server-for-recruiter-mu.vercel.app/logout",
             {},
             {
               withCredentials: true,
