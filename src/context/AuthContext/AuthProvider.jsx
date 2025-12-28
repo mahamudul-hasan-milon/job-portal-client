@@ -9,6 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import AuthContext from "./AuthContext";
+import axios from "axios";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -36,11 +37,35 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("state captured", currentUser);
-      setLoading(false);
+      console.log("state captured", currentUser?.email);
+
+      if (currentUser?.email) {
+        const user = { emali: currentUser.email };
+
+        axios
+          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log("Login token", res.data);
+            setLoading(false);
+          });
+      } else {
+        axios
+          .post(
+            "http://localhost:3000/logout",
+            {},
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            console.log("logout", res.data);
+            setLoading(false);
+          });
+      }
     });
     return () => {
       unsubscribe();
