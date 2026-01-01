@@ -1,20 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const useJobs = (sort, search) => {
+const useJobs = (sort, search, minSalary, maxSalary) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(
-        `https://job-portal-server-for-recruiter-mu.vercel.app/jobs?sort=${sort}&search=${search}`
+        `https://job-portal-server-for-recruiter-mu.vercel.app/jobs?sort=${sort}&search=${search}&min=${minSalary}&max=${maxSalary}`
       )
       .then((res) => {
         setLoading(false);
         setJobs(res.data);
       });
-  }, [sort, search]);
+  }, [sort, search, minSalary, maxSalary]);
 
   return { jobs, loading };
 };

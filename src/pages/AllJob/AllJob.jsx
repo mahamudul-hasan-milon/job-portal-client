@@ -5,8 +5,10 @@ import { BiSearch } from "react-icons/bi";
 
 const AllJob = () => {
   const [sort, setSort] = useState(false);
+  const [minSalary, setMinSalary] = useState("");
+  const [maxSalary, setMaxSalary] = useState("");
   const [search, setSearch] = useState("");
-  const { jobs, loading } = useJobs(sort, search);
+  const { jobs, loading } = useJobs(sort, search, minSalary, maxSalary);
   //   console.log(sort);
   if (loading) {
     return <h2>Job is Loading</h2>;
@@ -28,6 +30,20 @@ const AllJob = () => {
           className="input w-full max-w-2xl"
           placeholder="Search Jobs by Location"
         />
+        <div className="space-y-3">
+          <input
+            onKeyUp={(e) => setMinSalary(e.target.value)}
+            type="text"
+            className="input w-full max-w-xs"
+            placeholder="Min Salary"
+          />
+          <input
+            onKeyUp={(e) => setMaxSalary(e.target.value)}
+            type="text"
+            className="input w-full max-w-xs"
+            placeholder="Max Salary"
+          />
+        </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {jobs.map((job) => (
