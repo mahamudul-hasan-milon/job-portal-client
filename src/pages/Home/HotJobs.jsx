@@ -5,12 +5,15 @@ const HotJobs = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    fetch("https://job-portal-server-for-recruiter-mu.vercel.app/jobs")
+    fetch(
+      "https://job-portal-server-for-recruiter-mu.vercel.app/jobs?sort=false"
+    )
       .then((res) => res.json())
       .then((data) => setJobs(data));
   }, []);
   return (
     <div>
+      <h2 className="text-4xl mt-10 text-center font-bold">Hot Jobs</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {jobs.map((job) => (
           <HotJobsCard key={job._id} job={job}></HotJobsCard>
