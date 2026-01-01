@@ -7,7 +7,9 @@ const useJobs = (sort, search) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/jobs?sort=${sort}&search=${search}`)
+      .get(
+        `https://job-portal-server-for-recruiter-mu.vercel.app/jobs?sort=${sort}&search=${search}`
+      )
       .then((res) => {
         setLoading(false);
         setJobs(res.data);
