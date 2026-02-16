@@ -46,7 +46,7 @@ const Footer = () => {
   return (
     <footer className="bg-linear-to-br from-gray-900 to-gray-800 text-gray-300">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 py-12 mt-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
         {/* Top Section with Logo and Newsletter */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-8 border-b border-gray-700">
           <div className="flex items-start gap-4">
